@@ -1,6 +1,5 @@
-<p align="center">
-  <img src="docs/assets/logo.png">
-</p>
+<img src="https://raw.githubusercontent.com/in-toto/archivista/main/docs/assets/logo.png" align="center"
+     alt="Witness project logo" ></img>
 
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/8280/badge)](https://www.bestpractices.dev/projects/8280)
 [![OpenSSF-Scorecard](https://api.securityscorecards.dev/projects/github.com/in-toto/archivista/badge)](https://api.securityscorecards.dev/projects/github.com/in-toto/archivista)
