@@ -6,12 +6,12 @@ const sidebars = {
     {
       type: 'doc',
       label: 'About',
-      id: 'docs/README',
+      id: 'README',
     },
     {
       type: 'doc',
       label: 'New Contributors Guide',
-      id: 'docs/CONTRIBUTING',
+      id: 'CONTRIBUTING',
     },
   ],
 }
