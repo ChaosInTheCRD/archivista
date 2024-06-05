@@ -15,41 +15,35 @@
 package schema
 
 import (
-	"entgo.io/contrib/entgql"
 	"entgo.io/ent"
 	"entgo.io/ent/schema/edge"
 	"entgo.io/ent/schema/field"
 	"entgo.io/ent/schema/index"
-	"github.com/google/uuid"
 )
 
-// Statement represents an in-toto statement from an archived dsse envelope
-type Statement struct {
+// SarifRule represents a Sarif Rule
+type SarifRule struct {
 	ent.Schema
 }
 
-// Fields of the Statement.
-func (Statement) Fields() []ent.Field {
+func (SarifRule) Fields() []ent.Field {
 	return []ent.Field{
-		field.UUID("id", uuid.UUID{}).Default(uuid.New).Immutable().Unique(),
-		field.String("predicate").NotEmpty(),
+		field.String("rule_id").NotEmpty(),
+		field.String("rule_name").NotEmpty(),
+		field.String("short_description").NotEmpty(),
 	}
 }
 
-// Edges of the Statement.
-func (Statement) Edges() []ent.Edge {
+func (SarifRule) Edges() []ent.Edge {
 	return []ent.Edge{
-		edge.To("subjects", Subject.Type).Annotations(entgql.RelayConnection()),
-		edge.To("policy", AttestationPolicy.Type).Unique(),
-		edge.To("attestation_collections", AttestationCollection.Type).Unique(),
-		edge.To("sarif", Sarif.Type).Unique(),
-
-		edge.From("dsse", Dsse.Type).Ref("statement"),
+		edge.From("sarif", Sarif.Type).Ref("sarif_rules").Unique().Required(),
 	}
 }
 
-func (Statement) Indexes() []ent.Index {
+func (SarifRule) Indexes() []ent.Index {
 	return []ent.Index{
-		index.Fields("predicate"),
+		index.Fields("rule_id"),
+		index.Fields("rule_name"),
+		index.Fields("short_description"),
 	}
 }
